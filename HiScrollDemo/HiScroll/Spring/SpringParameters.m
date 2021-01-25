@@ -62,7 +62,7 @@
 }
 
 - (CGPoint)c2 {
-    CGPoint p1 = CGPointMake(self.displacement.x * self.spring.beta, self.displacement.y * self.spring.beta);
+    CGPoint p1 = CGPointMultiplyFloatMake(self.displacement, self.spring.beta);
     return CGPointPlusPointMake(self.initialVelocity, p1);
 }
 

@@ -184,7 +184,7 @@
     if (!intersection.null) {
         duration = [self.decelerationParameters durationToValue:intersection.point];
     }
-    
+    self.decelerationDuration = duration;
     [self.decelerationAnimation startAnimationsWithDuration:duration];
 }
 

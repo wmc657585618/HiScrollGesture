@@ -29,16 +29,12 @@
 }
 
 - (SpringUnder *)under {
-    if (!_under) {
-        _under = [[SpringUnder alloc] init];
-    }
+    if (!_under) _under = [[SpringUnder alloc] init];
     return _under;
 }
 
 - (SpringCritically *)critically {
-    if (!_critically) {
-        _critically = [[SpringCritically alloc] init];
-    }
+    if (!_critically) _critically = [[SpringCritically alloc] init];
     return _critically;
 }
 
@@ -52,8 +48,7 @@
 
 - (void)updateDisplacement:(CGPoint)displacement initialVelocity:(CGPoint)initialVelocity {
     self.implementation.displacement = displacement;
-    self.initialVelocity = initialVelocity;
+    self.implementation.initialVelocity = initialVelocity;
 }
-
 
 @end

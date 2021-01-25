@@ -56,7 +56,7 @@
 }
 
 - (CGPoint)velocityAtTime:(NSTimeInterval)time {
-    return CGPointMultiplyFloatMake(self.initialValue, pow(self.decelerationRate, 1000 * time));
+    return CGPointMultiplyFloatMake(self.initialVelocity, pow(self.decelerationRate, 1000.0 * time));
 }
 
 - (void)updateInitialValue:(CGPoint)initialValue initialVelocity:(CGPoint)initialVelocity decelerationRate:(CGFloat)decelerationRate threshold:(CGFloat)threshold {

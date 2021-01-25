@@ -55,7 +55,7 @@ UIKIT_STATIC_INLINE CGPoint CGPointDivideFloatMake(CGPoint p, CGFloat f) {
 
 /// 获取 point 长度
 UIKIT_STATIC_INLINE CGFloat CGPointLenghtMake(CGPoint p) {
-    return sqrt(p.x * p.x + p.y * p.y);
+    return sqrtf(p.x * p.x + p.y * p.y);
 }
 
 /// 减速相关
@@ -146,7 +146,7 @@ UIKIT_STATIC_INLINE CGFloat CGPointDistance(CGPoint p,CGPoint v, CGPoint w) {
     CGFloat dx = p.x - int_x;
     CGFloat dy = p.y - int_y;
 
-    return sqrt(dx * dx + dy * dy);
+    return sqrtf(dx * dx + dy * dy);
 }
 
 /// point 是否在 edge 中

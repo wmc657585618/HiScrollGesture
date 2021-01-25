@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C052A0C25BE63A900E45431 /* UIScrollViewCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C052A0B25BE63A900E45431 /* UIScrollViewCategory.m */; };
 		1CAD28C425B91AA600A9AA90 /* ScrollDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD28C325B91AA600A9AA90 /* ScrollDemo.m */; };
 		1CAD28C925B91CEB00A9AA90 /* CGScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD28C825B91CEB00A9AA90 /* CGScroll.m */; };
 		1CAD28CD25B920E800A9AA90 /* Deceleration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD28CC25B920E800A9AA90 /* Deceleration.m */; };
@@ -26,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C052A0A25BE63A800E45431 /* UIScrollViewCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIScrollViewCategory.h; sourceTree = "<group>"; };
+		1C052A0B25BE63A900E45431 /* UIScrollViewCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIScrollViewCategory.m; sourceTree = "<group>"; };
 		1CAD28C225B91AA600A9AA90 /* ScrollDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollDemo.h; sourceTree = "<group>"; };
 		1CAD28C325B91AA600A9AA90 /* ScrollDemo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollDemo.m; sourceTree = "<group>"; };
 		1CAD28C725B91CEB00A9AA90 /* CGScroll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGScroll.h; sourceTree = "<group>"; };
@@ -69,9 +72,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C052A0925BE637300E45431 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				1C052A0A25BE63A800E45431 /* UIScrollViewCategory.h */,
+				1C052A0B25BE63A900E45431 /* UIScrollViewCategory.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		1C7DE84F25BA6E3100B541E5 /* HiScroll */ = {
 			isa = PBXGroup;
 			children = (
+				1C052A0925BE637300E45431 /* Category */,
 				1C7DE85425BA6EA500B541E5 /* RubberBand */,
 				1C7DE85325BA6E9400B541E5 /* Animation */,
 				1C7DE85225BA6E8000B541E5 /* Spring */,
@@ -247,6 +260,7 @@
 				1CAD28C925B91CEB00A9AA90 /* CGScroll.m in Sources */,
 				1CAD28DD25B95D7400A9AA90 /* ScrollSpringBase.m in Sources */,
 				1CAD28D125B927E900A9AA90 /* ScrollAnimation.m in Sources */,
+				1C052A0C25BE63A900E45431 /* UIScrollViewCategory.m in Sources */,
 				1CAD28C425B91AA600A9AA90 /* ScrollDemo.m in Sources */,
 				1CAD28CD25B920E800A9AA90 /* Deceleration.m in Sources */,
 				1CC3D38E25A2C06300161918 /* main.m in Sources */,
