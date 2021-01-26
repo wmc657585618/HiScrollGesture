@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		1C052A0C25BE63A900E45431 /* UIScrollViewCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C052A0B25BE63A900E45431 /* UIScrollViewCategory.m */; };
+		1C5D18A125BFBBB7003E51F4 /* HiScrollViewDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5D188B25BFBBB7003E51F4 /* HiScrollViewDefine.m */; };
+		1C5D18A225BFBBB7003E51F4 /* HiScrollObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5D188E25BFBBB7003E51F4 /* HiScrollObject.m */; };
+		1C5D18A325BFBBB7003E51F4 /* HiScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5D189125BFBBB7003E51F4 /* HiScrollView.m */; };
+		1C5D18A425BFBBB7003E51F4 /* HiScrollViewPublic.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5D189225BFBBB7003E51F4 /* HiScrollViewPublic.m */; };
+		1C5D18A525BFBBB7003E51F4 /* HiScrollViewPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5D189625BFBBB7003E51F4 /* HiScrollViewPrivate.m */; };
+		1C5D18A625BFBBB7003E51F4 /* HiScrollViewPropertyHorizontal.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5D189825BFBBB7003E51F4 /* HiScrollViewPropertyHorizontal.m */; };
+		1C5D18A725BFBBB7003E51F4 /* HiScrollViewProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5D189C25BFBBB7003E51F4 /* HiScrollViewProperty.m */; };
+		1C5D18A825BFBBB7003E51F4 /* HiScrollViewPropertyVertical.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5D18A025BFBBB7003E51F4 /* HiScrollViewPropertyVertical.m */; };
+		1C5D18AD25BFBE4C003E51F4 /* HiObjectRunTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5D18AC25BFBE4C003E51F4 /* HiObjectRunTime.m */; };
 		1CAD28C425B91AA600A9AA90 /* ScrollDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD28C325B91AA600A9AA90 /* ScrollDemo.m */; };
 		1CAD28C925B91CEB00A9AA90 /* CGScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD28C825B91CEB00A9AA90 /* CGScroll.m */; };
 		1CAD28CD25B920E800A9AA90 /* Deceleration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD28CC25B920E800A9AA90 /* Deceleration.m */; };
@@ -29,6 +38,24 @@
 /* Begin PBXFileReference section */
 		1C052A0A25BE63A800E45431 /* UIScrollViewCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIScrollViewCategory.h; sourceTree = "<group>"; };
 		1C052A0B25BE63A900E45431 /* UIScrollViewCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIScrollViewCategory.m; sourceTree = "<group>"; };
+		1C5D188B25BFBBB7003E51F4 /* HiScrollViewDefine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiScrollViewDefine.m; sourceTree = "<group>"; };
+		1C5D188C25BFBBB7003E51F4 /* HiScrollViewDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiScrollViewDefine.h; sourceTree = "<group>"; };
+		1C5D188E25BFBBB7003E51F4 /* HiScrollObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiScrollObject.m; sourceTree = "<group>"; };
+		1C5D188F25BFBBB7003E51F4 /* HiScrollObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiScrollObject.h; sourceTree = "<group>"; };
+		1C5D189125BFBBB7003E51F4 /* HiScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiScrollView.m; sourceTree = "<group>"; };
+		1C5D189225BFBBB7003E51F4 /* HiScrollViewPublic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiScrollViewPublic.m; sourceTree = "<group>"; };
+		1C5D189325BFBBB7003E51F4 /* HiScrollViewPublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiScrollViewPublic.h; sourceTree = "<group>"; };
+		1C5D189425BFBBB7003E51F4 /* HiScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiScrollView.h; sourceTree = "<group>"; };
+		1C5D189625BFBBB7003E51F4 /* HiScrollViewPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiScrollViewPrivate.m; sourceTree = "<group>"; };
+		1C5D189825BFBBB7003E51F4 /* HiScrollViewPropertyHorizontal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiScrollViewPropertyHorizontal.m; sourceTree = "<group>"; };
+		1C5D189925BFBBB7003E51F4 /* HiScrollViewPropertyHorizontal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiScrollViewPropertyHorizontal.h; sourceTree = "<group>"; };
+		1C5D189B25BFBBB7003E51F4 /* HiScrollViewProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiScrollViewProperty.h; sourceTree = "<group>"; };
+		1C5D189C25BFBBB7003E51F4 /* HiScrollViewProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiScrollViewProperty.m; sourceTree = "<group>"; };
+		1C5D189D25BFBBB7003E51F4 /* HiScrollViewPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiScrollViewPrivate.h; sourceTree = "<group>"; };
+		1C5D189F25BFBBB7003E51F4 /* HiScrollViewPropertyVertical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiScrollViewPropertyVertical.h; sourceTree = "<group>"; };
+		1C5D18A025BFBBB7003E51F4 /* HiScrollViewPropertyVertical.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiScrollViewPropertyVertical.m; sourceTree = "<group>"; };
+		1C5D18AB25BFBE4C003E51F4 /* HiObjectRunTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiObjectRunTime.h; sourceTree = "<group>"; };
+		1C5D18AC25BFBE4C003E51F4 /* HiObjectRunTime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiObjectRunTime.m; sourceTree = "<group>"; };
 		1CAD28C225B91AA600A9AA90 /* ScrollDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollDemo.h; sourceTree = "<group>"; };
 		1CAD28C325B91AA600A9AA90 /* ScrollDemo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollDemo.m; sourceTree = "<group>"; };
 		1CAD28C725B91CEB00A9AA90 /* CGScroll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGScroll.h; sourceTree = "<group>"; };
@@ -77,8 +104,90 @@
 			children = (
 				1C052A0A25BE63A800E45431 /* UIScrollViewCategory.h */,
 				1C052A0B25BE63A900E45431 /* UIScrollViewCategory.m */,
+				1C5D18AB25BFBE4C003E51F4 /* HiObjectRunTime.h */,
+				1C5D18AC25BFBE4C003E51F4 /* HiObjectRunTime.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		1C5D188925BFBBB6003E51F4 /* hiScroll */ = {
+			isa = PBXGroup;
+			children = (
+				1C5D188A25BFBBB7003E51F4 /* define */,
+				1C5D188D25BFBBB7003E51F4 /* other */,
+				1C5D189025BFBBB7003E51F4 /* public */,
+				1C5D189525BFBBB7003E51F4 /* private */,
+			);
+			name = hiScroll;
+			path = ../../ScrollTest/ScrollTest/hiScroll;
+			sourceTree = "<group>";
+		};
+		1C5D188A25BFBBB7003E51F4 /* define */ = {
+			isa = PBXGroup;
+			children = (
+				1C5D188B25BFBBB7003E51F4 /* HiScrollViewDefine.m */,
+				1C5D188C25BFBBB7003E51F4 /* HiScrollViewDefine.h */,
+			);
+			path = define;
+			sourceTree = "<group>";
+		};
+		1C5D188D25BFBBB7003E51F4 /* other */ = {
+			isa = PBXGroup;
+			children = (
+				1C5D188E25BFBBB7003E51F4 /* HiScrollObject.m */,
+				1C5D188F25BFBBB7003E51F4 /* HiScrollObject.h */,
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		1C5D189025BFBBB7003E51F4 /* public */ = {
+			isa = PBXGroup;
+			children = (
+				1C5D189425BFBBB7003E51F4 /* HiScrollView.h */,
+				1C5D189125BFBBB7003E51F4 /* HiScrollView.m */,
+				1C5D189325BFBBB7003E51F4 /* HiScrollViewPublic.h */,
+				1C5D189225BFBBB7003E51F4 /* HiScrollViewPublic.m */,
+			);
+			path = public;
+			sourceTree = "<group>";
+		};
+		1C5D189525BFBBB7003E51F4 /* private */ = {
+			isa = PBXGroup;
+			children = (
+				1C5D189D25BFBBB7003E51F4 /* HiScrollViewPrivate.h */,
+				1C5D189625BFBBB7003E51F4 /* HiScrollViewPrivate.m */,
+				1C5D189725BFBBB7003E51F4 /* horizontal */,
+				1C5D189A25BFBBB7003E51F4 /* property */,
+				1C5D189E25BFBBB7003E51F4 /* vertical */,
+			);
+			path = private;
+			sourceTree = "<group>";
+		};
+		1C5D189725BFBBB7003E51F4 /* horizontal */ = {
+			isa = PBXGroup;
+			children = (
+				1C5D189825BFBBB7003E51F4 /* HiScrollViewPropertyHorizontal.m */,
+				1C5D189925BFBBB7003E51F4 /* HiScrollViewPropertyHorizontal.h */,
+			);
+			path = horizontal;
+			sourceTree = "<group>";
+		};
+		1C5D189A25BFBBB7003E51F4 /* property */ = {
+			isa = PBXGroup;
+			children = (
+				1C5D189B25BFBBB7003E51F4 /* HiScrollViewProperty.h */,
+				1C5D189C25BFBBB7003E51F4 /* HiScrollViewProperty.m */,
+			);
+			path = property;
+			sourceTree = "<group>";
+		};
+		1C5D189E25BFBBB7003E51F4 /* vertical */ = {
+			isa = PBXGroup;
+			children = (
+				1C5D189F25BFBBB7003E51F4 /* HiScrollViewPropertyVertical.h */,
+				1C5D18A025BFBBB7003E51F4 /* HiScrollViewPropertyVertical.m */,
+			);
+			path = vertical;
 			sourceTree = "<group>";
 		};
 		1C7DE84F25BA6E3100B541E5 /* HiScroll */ = {
@@ -164,6 +273,7 @@
 		1CC3D37A25A2C06200161918 /* HiScrollDemo */ = {
 			isa = PBXGroup;
 			children = (
+				1C5D188925BFBBB6003E51F4 /* hiScroll */,
 				1C7DE84F25BA6E3100B541E5 /* HiScroll */,
 				1CC3D37B25A2C06200161918 /* AppDelegate.h */,
 				1CC3D37C25A2C06200161918 /* AppDelegate.m */,
@@ -251,16 +361,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C5D18A325BFBBB7003E51F4 /* HiScrollView.m in Sources */,
+				1C5D18A725BFBBB7003E51F4 /* HiScrollViewProperty.m in Sources */,
 				1CAD28E125B975F900A9AA90 /* SpringParameters.m in Sources */,
 				1CAD28D925B95C5E00A9AA90 /* DecelerationParameters.m in Sources */,
+				1C5D18A225BFBBB7003E51F4 /* HiScrollObject.m in Sources */,
 				1CAD28D525B95AE000A9AA90 /* Spring.m in Sources */,
 				1CC3D38325A2C06200161918 /* ViewController.m in Sources */,
+				1C5D18AD25BFBE4C003E51F4 /* HiObjectRunTime.m in Sources */,
+				1C5D18A825BFBBB7003E51F4 /* HiScrollViewPropertyVertical.m in Sources */,
+				1C5D18A625BFBBB7003E51F4 /* HiScrollViewPropertyHorizontal.m in Sources */,
 				1CAD28E525B99F9900A9AA90 /* RubberBand.m in Sources */,
 				1CC3D37D25A2C06200161918 /* AppDelegate.m in Sources */,
+				1C5D18A125BFBBB7003E51F4 /* HiScrollViewDefine.m in Sources */,
 				1CAD28C925B91CEB00A9AA90 /* CGScroll.m in Sources */,
 				1CAD28DD25B95D7400A9AA90 /* ScrollSpringBase.m in Sources */,
 				1CAD28D125B927E900A9AA90 /* ScrollAnimation.m in Sources */,
+				1C5D18A525BFBBB7003E51F4 /* HiScrollViewPrivate.m in Sources */,
 				1C052A0C25BE63A900E45431 /* UIScrollViewCategory.m in Sources */,
+				1C5D18A425BFBBB7003E51F4 /* HiScrollViewPublic.m in Sources */,
 				1CAD28C425B91AA600A9AA90 /* ScrollDemo.m in Sources */,
 				1CAD28CD25B920E800A9AA90 /* Deceleration.m in Sources */,
 				1CC3D38E25A2C06300161918 /* main.m in Sources */,
