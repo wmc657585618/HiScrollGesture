@@ -12,10 +12,10 @@
 #import "DecelerationParameters.h"
 #import "Spring.h"
 #import "RubberBand.h"
+#import "UIScrollViewCategory.h"
 
 @interface ScrollDemo ()<UIGestureRecognizerDelegate>
 
-@property (nonatomic, assign, readonly) UIEdgeInsets boundsEdge;
 @property (nonatomic, strong) NSDate *lastPan;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
 
@@ -100,10 +100,6 @@
     }
 }
 
-- (UIEdgeInsets)boundsEdge {
-    return UIEdgeInsetsMake(self.contentInset.top, self.contentInset.left, self.contentInset.bottom + self.contentSize.height - self.bounds.size.height, self.contentInset.right + self.contentSize.width - self.bounds.size.width);
-}
-
 - (UIPanGestureRecognizer *)panRecognizer {
     if (!_panRecognizer) {
         _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanRecognizer:)];
@@ -155,13 +151,13 @@
 }
 
 - (CGPoint)clampOffset:(CGPoint)offset {
-    [self.rubberBand updateDims:self.bounds.size edgeInsets:self.boundsEdge];
+    [self.rubberBand updateDims:self.bounds.size edgeInsets:self.boundsEdgeInsets];
     return [self.rubberBand clampPoint:offset];
 }
 
 - (void)completeGestureWithVelocity:(CGPoint)velocity {
     
-    if (UIEdgeInsetsContainsCGPoint(self.contentOffset, self.boundsEdge)) {
+    if (UIEdgeInsetsContainsCGPoint(self.contentOffset, self.boundsEdgeInsets)) {
         [self startDecelerationWithVelocity:velocity];
 
     } else {
@@ -176,7 +172,7 @@
     CGPoint destination = self.decelerationParameters.destination;
     
     // 找到与内容边界的碰撞点位置
-    HiPoint intersection = HiPointIntersection(self.boundsEdge, self.contentOffset, destination);
+    HiPoint intersection = HiPointIntersection(self.boundsEdgeInsets, self.contentOffset, destination);
     self.intersectionNull = intersection.null;
 
     // 如果发现会越界，那么找到越界之前的动画时间, 默认之前的
@@ -190,7 +186,7 @@
 
 - (void)bounceWithVelocity:(CGPoint)velocity {
     // 计算弹性动画的终止位置
-    CGPoint contentOffset = CGPointInEdgeInsetsMake(self.contentOffset,self.boundsEdge);
+    CGPoint contentOffset = CGPointInEdgeInsetsMake(self.contentOffset,self.boundsEdgeInsets);
     self.bounceOffset = contentOffset;
     
     // 计算初始的弹性动画的偏移量

@@ -9,13 +9,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-struct Limits {
-    CGFloat lowerBound;
-    CGFloat upperBound;
-};
-
-typedef struct Limits Limits;
-
 @interface RubberBand : NSObject
 
 - (void)updateDims:(CGSize)dims edgeInsets:(UIEdgeInsets)edgeInsets;

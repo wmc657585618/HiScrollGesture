@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// bottom: 如果 contentsize > height, 取 contentsize, 否则取 height
 /// right: 如果 contentsize > right, 取 contentsize, 否则取 right
-//@property (nonatomic, assign,readonly) UIEdgeInsets boundsEdgeInsets;
+@property (nonatomic, assign,readonly) UIEdgeInsets boundsEdgeInsets;
 
 @end
 

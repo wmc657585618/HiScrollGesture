@@ -8,6 +8,13 @@
 #import "RubberBand.h"
 #import "CGScroll.h"
 
+struct Limits {
+    CGFloat lowerBound;
+    CGFloat upperBound;
+};
+
+typedef struct Limits Limits;
+
 // 在边界内 取原值 否则取边界
 UIKIT_STATIC_INLINE CGFloat CGFloatClamped(CGFloat v, Limits limits) {
     return fmin(fmax(v, limits.lowerBound), limits.upperBound);
