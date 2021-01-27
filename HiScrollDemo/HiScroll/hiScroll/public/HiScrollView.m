@@ -16,6 +16,7 @@
     [self hi_handlePanRecognizer:pan];
 }
 
+/// 没有触发 pan 休正 content offset
 - (void)tapGestureRecognizerAction:(UITapGestureRecognizer *)gestureRecognizer {
     [self completeGestureWithVelocity:CGPointZero];
 }
@@ -39,6 +40,8 @@
                 _node2.nextNode = node2;
                 node1 = _node1;
                 node2 = _node2;
+                
+                scroll.scrollView = self;
             }
         }
         

@@ -15,15 +15,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-// 滚动方向
-typedef enum : NSUInteger {
-    HiPanTop,
-    HiPanBottom,
-    HiPanLeft,
-    HiPanRight,
-} HiPanDirection;
-
-
 @interface UIScrollView (HiScrollHandle)
 
 /// MARK: - bounce

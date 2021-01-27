@@ -25,8 +25,23 @@
     if (finished && !self.intersectionNull) {
         // 碰撞的瞬间，计算出瞬时速度，作为调用 bounce 函数的参数.
         CGPoint velocity = [self.decelerationParameters velocityAtTime:self.decelerationDuration];
+        
+        // 找到可以处理的 scroll, 调用 - completeGestureWithVelocity:
         [self bounceWithVelocity:velocity];
     }
+}
+
+- (UIScrollView *)findDecelerationActionScrollView {
+    
+    UIScrollView *scrollView = self.scrollView;
+    if (!scrollView) scrollView = self; // 容器本身
+    
+    HiScrollNode *node = scrollView.scrollNode;
+    while (node.object != self) {
+        node = node.nextNode;
+    }
+    
+    return node.object;
 }
 
 - (void)bounceWithVelocity:(CGPoint)velocity {
@@ -42,8 +57,20 @@
 
 // 计算偏移量
 - (CGPoint)clampOffset:(CGPoint)offset {
-    [self.rubberBand updateDims:self.bounds.size edgeInsets:self.boundsEdgeInsets];
-    return [self.rubberBand clampPoint:offset];
+    return hi_clampPoint(offset, self.boundsEdgeInsets, self.bounds.size);
+}
+
+- (void )findScrollActionScrollView:(CGPoint)offset {
+    UIScrollView *scrollView = self.scrollView;
+    if (!scrollView) scrollView = self; // 容器本身
+    HiScrollNode *node = scrollView.scrollNode;
+    CGPoint p = CGPointPlusPointMake(scrollView.contentOffset, offset);
+
+    while (!UIEdgeInsetsContainsCGPoint(p, scrollView.boundsEdgeInsets)) {
+        node = node.nextNode;
+        scrollView = node.object;
+        p = CGPointPlusPointMake(scrollView.contentOffset, offset);
+    }
 }
 
 - (void)completeGestureWithVelocity:(CGPoint)velocity {
@@ -68,7 +95,7 @@
 
     // 如果发现会越界，那么找到越界之前的动画时间, 默认之前的
     NSTimeInterval duration = 0;
-    if (intersection.null) {
+    if (intersection.null) { // 没有越界
         duration = self.decelerationParameters.duration;
 
     } else {
@@ -86,7 +113,10 @@
 
     switch (pan.state) {
         case UIGestureRecognizerStateBegan:
+        {
             self.initialOffset = self.contentOffset;
+            [self changeDraggin];
+        }
             break;
             
         case UIGestureRecognizerStateChanged:
@@ -101,7 +131,14 @@
         {
             BOOL userHadStoppedDragging = [newPan timeIntervalSinceDate:self.lastPan] >= 0.15;
             CGPoint velocity = userHadStoppedDragging ? CGPointZero : [pan velocityInView:self];
+            if (HiScrollViewDirectionVertical == self.scrollDirection) {
+                self.panDirection = velocity.y < 0 ? HiPanTop : HiPanBottom;
+            } else {
+                self.panDirection = velocity.x < 0 ? HiPanLeft : HiPanRight;
+            }
+            
             [self completeGestureWithVelocity:CGPointMake(-velocity.x, -velocity.y)];
+            [self resetDraggin];
         }
             break;
         default:

@@ -19,14 +19,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// 滚动方向
+typedef enum : NSUInteger {
+    HiPanTop,
+    HiPanBottom,
+    HiPanLeft,
+    HiPanRight,
+} HiPanDirection;
+
+
 extern HiScrollNode * hi_nodesSort(HiScrollNode *head, BOOL revert, HiScrollViewProperty direction);
 
 @interface UIScrollView (HiScrollViewProperty)<HiScrollGestureDelegate>
 
-@property (nonatomic, strong, readonly) HiScrollWeak *actionScrollViewWeak;
 @property (nonatomic, strong, readonly) HiScrollGesture *scrollGesture;
 
 @property (nonatomic, weak) UIScrollView *actionScrollView; // 本次处理滚动的 scrollview
+@property (nonatomic, weak) UIScrollView *scrollView; // 容器 scrollView
 
 @property (nonatomic, strong) HiScrollNode *topNode;
 @property (nonatomic, strong) HiScrollNode *bottomNode;
@@ -51,9 +60,6 @@ extern HiScrollNode * hi_nodesSort(HiScrollNode *head, BOOL revert, HiScrollView
 /// 弹簧
 @property (nonatomic, strong, readonly) ScrollSpring *spring;
 
-/// 橡皮筋
-@property (nonatomic, strong, readonly) RubberBand *rubberBand;
-
 @property (nonatomic, assign) BOOL intersectionNull;
 @property (nonatomic, assign) NSTimeInterval decelerationDuration;
 @property (nonatomic, assign) CGPoint bounceOffset;
@@ -63,6 +69,13 @@ extern HiScrollNode * hi_nodesSort(HiScrollNode *head, BOOL revert, HiScrollView
 
 /// 弹簧
 @property (nonatomic, strong, readonly) ScrollAnimation *bounceAnimation;
+
+/// 当前 actionScroll 的 content offset
+@property (nonatomic, assign, readonly) CGPoint hi_contentOffset;
+
+@property (nonatomic, assign) HiPanDirection panDirection;
+
+@property (nonatomic, strong, readonly) HiScrollNode *scrollNode; // 当前的 node
 
 @end
 

@@ -58,16 +58,6 @@ inline HiScrollNode * hi_nodesSort(HiScrollNode *head, BOOL revert, HiScrollView
 
 @implementation UIScrollView (HiScrollViewProperty)
 
-- (HiScrollWeak *)actionScrollViewWeak {
-    SEL key = @selector(actionScrollViewWeak);
-    HiScrollWeak *value = [self getAssociatedObjectForKey:key];
-    if (!value) {
-        value = [[HiScrollWeak alloc] init];
-        [self setRETAIN_NONATOMIC:value key:key];
-    }
-    return value;
-}
-
 - (HiScrollGesture *)scrollGesture {
     
     SEL key = @selector(scrollGesture);
@@ -81,11 +71,19 @@ inline HiScrollNode * hi_nodesSort(HiScrollNode *head, BOOL revert, HiScrollView
 }
 
 - (void)setActionScrollView:(UIScrollView *)actionScrollView {
-    self.actionScrollViewWeak.objc = actionScrollView;
+    [self setWEAK:actionScrollView key:@selector(actionScrollView)];
 }
 
 - (UIScrollView *)actionScrollView {
-    return self.actionScrollViewWeak.objc;
+    return [self getAssociatedObjectForKey:@selector(actionScrollView)];
+}
+
+- (void)setScrollView:(UIScrollView *)scrollView {
+    [self setWEAK:scrollView key:@selector(scrollView)];
+}
+
+- (UIScrollView *)scrollView {
+    return [self getAssociatedObjectForKey:@selector(scrollView)];
 }
 
 - (HiScrollNode *)nodeForKey:(SEL)key {
@@ -198,15 +196,6 @@ inline HiScrollNode * hi_nodesSort(HiScrollNode *head, BOOL revert, HiScrollView
     return _value;
 }
 
-- (RubberBand *)rubberBand {
-    RubberBand *_value = [self getAssociatedObjectForKey:@selector(rubberBand)];
-    if (!_value) {
-        _value = [[RubberBand alloc] init];
-        [self setRETAIN_NONATOMIC:_value key:@selector(rubberBand)];
-    }
-    return _value;
-}
-
 - (void)setIntersectionNull:(BOOL)intersectionNull {
     [self setASSIGN:@(intersectionNull) key:@selector(intersectionNull)];
 }
@@ -264,6 +253,34 @@ inline HiScrollNode * hi_nodesSort(HiScrollNode *head, BOOL revert, HiScrollView
         [self setRETAIN_NONATOMIC:_value key:@selector(bounceAnimation)];
     }
     return _value;
+}
+
+- (CGPoint)hi_contentOffset {
+    return self.actionScrollView.contentOffset;
+}
+
+- (void)setPanDirection:(HiPanDirection)panDirection {
+    [self setRETAIN_NONATOMIC:@(panDirection) key:@selector(panDirection)];
+}
+
+- (HiPanDirection)panDirection {
+    NSNumber *value = [self getAssociatedObjectForKey:@selector(panDirection)];
+    return value.integerValue;
+}
+
+- (HiScrollNode *)scrollNode {
+    switch (self.scrollDirection) {
+        case HiScrollViewDirectionVertical:
+        {
+            if (HiPanTop == self.panDirection) return self.topNode;
+            return self.bottomNode;
+        }
+        case HiScrollViewDirectionHorizontal:
+        {
+            if (HiPanLeft == self.panDirection) return self.leftNode;
+            return self.rightNode;
+        }
+    }
 }
 
 @end

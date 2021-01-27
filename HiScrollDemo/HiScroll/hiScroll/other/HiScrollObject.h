@@ -18,12 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface HiScrollWeak : NSObject
-
-@property (nonatomic, weak) id objc;
-
-@end
-
 @interface HiScrollGesture : NSObject<UIGestureRecognizerDelegate>
 
 - (BOOL)addGestureAtView:(UIView *)view;

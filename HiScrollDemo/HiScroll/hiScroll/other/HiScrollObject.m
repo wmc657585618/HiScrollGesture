@@ -7,10 +7,6 @@
 
 #import "HiScrollObject.h"
 
-@implementation HiScrollWeak
-
-@end
-
 @interface HiScrollGesture ()
 
 @property (nonatomic, assign) BOOL addGesture;

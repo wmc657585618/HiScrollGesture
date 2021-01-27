@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+extern CGPoint hi_clampPoint(CGPoint p, UIEdgeInsets e, CGSize d);
 
 @interface RubberBand : NSObject
 
