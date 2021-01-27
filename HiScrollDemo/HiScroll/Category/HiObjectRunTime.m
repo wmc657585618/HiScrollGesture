@@ -55,4 +55,13 @@
     weak.weak = value;
 }
 
++ (void)hi_class_getInstanceMethod:(SEL)originalSelector newSelector:(SEL)newSelector {
+    Method originalMethod = class_getInstanceMethod(self, originalSelector);
+    Method altMetthod = class_getInstanceMethod(self, newSelector);
+    
+    if (originalMethod && altMetthod) {
+        method_exchangeImplementations(originalMethod, altMetthod);
+    }
+}
+
 @end

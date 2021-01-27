@@ -8,7 +8,7 @@
 #import "UIScrollViewCategory.h"
 #import "HiObjectRunTime.h"
 
-@implementation UIScrollView (HiScrollProperty)
+@implementation UIScrollView (HiScrollHandle)
 
 /// MARK: - bounce
 - (void)_bounceAnimationWithTime:(NSTimeInterval)time {
@@ -187,12 +187,53 @@
     self.intersectionNull = intersection.null;
 
     // 如果发现会越界，那么找到越界之前的动画时间, 默认之前的
-    NSTimeInterval duration = self.decelerationParameters.duration;
-    if (!intersection.null) {
+    NSTimeInterval duration = 0;
+    if (intersection.null) {
+        duration = self.decelerationParameters.duration;
+
+    } else {
         duration = [self.decelerationParameters durationToValue:intersection.point];
     }
+    
     self.decelerationDuration = duration;
     [self.decelerationAnimation startAnimationsWithDuration:duration];
 }
 
+- (void)hi_handlePanRecognizer:(UIPanGestureRecognizer *)pan {
+    NSDate *newPan = [NSDate date];
+
+    if (!self.lastPan) self.lastPan = newPan;
+
+    switch (pan.state) {
+        case UIGestureRecognizerStateBegan:
+            self.initialOffset = self.contentOffset;
+            break;
+            
+        case UIGestureRecognizerStateChanged:
+        {
+            // top, left < 0
+            CGPoint translation = [pan translationInView:self];
+            CGPoint offset = CGPointMinusPointMake(self.initialOffset, translation);// 偏移量
+            self.contentOffset = [self clampOffset:offset];
+        }
+            break;
+        case UIGestureRecognizerStateEnded:
+        {
+            BOOL userHadStoppedDragging = [newPan timeIntervalSinceDate:self.lastPan] >= 0.15;
+            CGPoint velocity = userHadStoppedDragging ? CGPointZero : [pan velocityInView:self];
+            [self completeGestureWithVelocity:CGPointMake(-velocity.x, -velocity.y)];
+        }
+            break;
+        default:
+            
+            break;
+    }
+
+    self.lastPan = newPan;
+}
+
+- (void)hi_gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    [self.decelerationAnimation invalidate];
+    [self.bounceAnimation invalidate];
+}
 @end

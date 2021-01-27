@@ -6,8 +6,7 @@
 //
 
 #import "ViewController.h"
-
-#import "ScrollDemo.h"
+#import "HiScrollView.h"
 
 @interface ViewController ()
 
@@ -22,6 +21,7 @@
 {
     [super viewDidLoad];
 
+    [self.scrollView hi_scrollWithScrollDirection:HiScrollViewDirectionVertical];
     UIImage *img = [UIImage imageNamed:@"scheme"];
     UIImageView *imgView = [[UIImageView alloc] init];
     imgView.image = img;
@@ -38,7 +38,7 @@
 
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
-        _scrollView = [[ScrollDemo alloc] init];
+        _scrollView = [[UIScrollView alloc] init];
         _scrollView.scrollEnabled = false;
     }
     return _scrollView;

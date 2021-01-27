@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setCOPY:(id _Nullable)value key:(const void * _Nonnull)key;
 - (void)setWEAK:(id _Nullable)value key:(const void * _Nonnull)key;
 
++ (void)hi_class_getInstanceMethod:(SEL)originalSelector newSelector:(SEL)newSelector;
+
 @end
 
 NS_ASSUME_NONNULL_END

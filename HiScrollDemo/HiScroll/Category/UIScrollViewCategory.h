@@ -15,7 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIScrollView (HiScrollProperty)
+@interface UIScrollView (HiScrollHandle)
 
 /// bottom: 如果 contentsize > height, 取 contentsize, 否则取 height
 /// right: 如果 contentsize > right, 取 contentsize, 否则取 right
@@ -44,6 +44,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGPoint)clampOffset:(CGPoint)offset;
 - (void)completeGestureWithVelocity:(CGPoint)velocity;
 - (void)bounceWithVelocity:(CGPoint)velocity;
+
+- (void)hi_handlePanRecognizer:(UIPanGestureRecognizer *)pan;
+- (void)hi_gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer;
 
 @end
 
