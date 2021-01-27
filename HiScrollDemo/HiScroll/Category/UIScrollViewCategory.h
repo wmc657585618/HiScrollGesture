@@ -15,31 +15,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// 滚动方向
+typedef enum : NSUInteger {
+    HiPanTop,
+    HiPanBottom,
+    HiPanLeft,
+    HiPanRight,
+} HiPanDirection;
+
+
 @interface UIScrollView (HiScrollHandle)
 
-/// bottom: 如果 contentsize > height, 取 contentsize, 否则取 height
-/// right: 如果 contentsize > right, 取 contentsize, 否则取 right
-@property (nonatomic, assign,readonly) UIEdgeInsets boundsEdgeInsets;
+/// MARK: - bounce
+- (void)_bounceAnimationWithTime:(NSTimeInterval)time;
 
-@property (nonatomic, strong) NSDate *lastPan;
+/// MARK: - 减速
+- (void)_decelerationAnimationWithProgress:(CGFloat)progess time:(NSTimeInterval)time;
 
-@property (nonatomic, assign) CGPoint initialOffset; // pan 开始时的 contentoffset
-
-/// 减速
-@property (nonatomic, strong, readonly) Deceleration *deceleration;
-@property (nonatomic, strong, readonly) ScrollAnimation *decelerationAnimation;
-@property (nonatomic, strong, readonly) DecelerationParameters *decelerationParameters;
-
-/// 弹簧
-@property (nonatomic, strong, readonly) ScrollSpring *spring;
-@property (nonatomic, strong, readonly) ScrollAnimation *bounceAnimation;
-
-/// 橡皮筋
-@property (nonatomic, strong, readonly) RubberBand *rubberBand;
-
-@property (nonatomic, assign) BOOL intersectionNull;
-@property (nonatomic, assign) NSTimeInterval decelerationDuration;
-@property (nonatomic, assign) CGPoint bounceOffset;
+- (void)_decelerationAnimationCompleted:(BOOL)finished;
 
 - (CGPoint)clampOffset:(CGPoint)offset;
 - (void)completeGestureWithVelocity:(CGPoint)velocity;
