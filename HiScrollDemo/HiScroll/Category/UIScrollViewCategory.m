@@ -29,7 +29,6 @@
     }
 }
 
-/// MARK: - methods
 - (void)bounceWithVelocity:(CGPoint)velocity {
     // 计算弹性动画的终止位置
     CGPoint contentOffset = CGPointInEdgeInsetsMake(self.contentOffset,self.boundsEdgeInsets);
@@ -116,6 +115,32 @@
 - (void)hi_gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     [self.decelerationAnimation invalidate];
     [self.bounceAnimation invalidate];
+}
+
+- (void)changeNode:(HiScrollNode *)scrollNode draggin:(BOOL)draggin{
+    
+    HiScrollNode *node = scrollNode;
+    while (node) {
+        node.object.hi_draggin = draggin;
+        node = node.nextNode;
+    }
+}
+
+- (HiScrollNode *)nodeInDirection:(HiScrollViewDirection)direction {
+    switch (self.scrollDirection) {
+        case HiScrollViewDirectionVertical:
+            return self.topNode;
+        case HiScrollViewDirectionHorizontal:
+            return self.leftNode;
+    }
+}
+
+- (void)changeDraggin {
+    [self changeNode:[self nodeInDirection:self.scrollDirection] draggin:true];
+}
+
+- (void)resetDraggin {
+    [self changeNode:[self nodeInDirection:self.scrollDirection] draggin:false];
 }
 
 @end

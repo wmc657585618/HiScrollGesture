@@ -7,6 +7,8 @@
 
 #import "HiScrollViewPrivate.h"
 #import "HiScrollViewPublic.h"
+#import "HiScrollViewProperty.h"
+#import "HiObjectRunTime.h"
 
 @implementation UIScrollView (HiScrollViewPrivate)
 
@@ -46,6 +48,17 @@
         }
         self.contentOffset = point;
     }
+}
+
+- (BOOL)_isDragging {
+    if (self.hi_scrollEnabled) return self.hi_draggin;
+    return [self _isDragging];
+}
+
++ (void)load {
+    SEL originalSelector = @selector(isDragging);
+    SEL altSelector = @selector(_isDragging);
+    [self hi_class_getInstanceMethod:originalSelector newSelector:altSelector];
 }
 
 @end

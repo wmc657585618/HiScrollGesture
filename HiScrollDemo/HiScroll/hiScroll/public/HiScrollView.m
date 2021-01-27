@@ -6,42 +6,10 @@
 //
 
 #import "HiScrollView.h"
-#import "HiObjectRunTime.h"
 #import "UIScrollViewCategory.h"
 #import "HiScrollViewProperty.h"
 
 @implementation UIScrollView (HiScrollView)
-
-- (void)changeNode:(HiScrollNode *)scrollNode draggin:(BOOL)draggin{
-    
-    HiScrollNode *node = scrollNode;
-    while (node) {
-        node.object.hi_draggin = draggin;
-        node = node.nextNode;
-    }
-}
-
-- (void)changeDraggin {
-    switch (self.scrollDirection) {
-        case HiScrollViewDirectionVertical:
-            [self changeNode:self.topNode draggin:true];
-            break;
-        case HiScrollViewDirectionHorizontal:
-            [self changeNode:self.leftNode draggin:true];
-            break;
-    }
-}
-
-- (void)resetDraggin {
-    switch (self.scrollDirection) {
-        case HiScrollViewDirectionVertical:
-            [self changeNode:self.topNode draggin:false];
-            break;
-        case HiScrollViewDirectionHorizontal:
-            [self changeNode:self.leftNode draggin:false];
-            break;
-    }
-}
 
 /// 手势
 - (void)panGestureRecognizerAction:(UIPanGestureRecognizer *)pan {
@@ -87,17 +55,6 @@
     }
     
     return true;
-}
-
-- (BOOL)_isDragging {
-    if (self.hi_scrollEnabled) return self.hi_draggin;
-    return [self _isDragging];
-}
-
-+ (void)load {
-    SEL originalSelector = @selector(isDragging);
-    SEL altSelector = @selector(_isDragging);
-    [self hi_class_getInstanceMethod:originalSelector newSelector:altSelector];
 }
 
 /// MARK: - public
