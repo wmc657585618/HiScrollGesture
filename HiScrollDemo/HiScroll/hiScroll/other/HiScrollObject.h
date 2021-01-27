@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 - (BOOL)gesture:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch;
 - (void)panGestureRecognizerAction:(UIPanGestureRecognizer *)gestureRecognizer;
+- (void)tapGestureRecognizerAction:(UITapGestureRecognizer *)gestureRecognizer;
 
 @end
 

@@ -29,7 +29,6 @@
     }
 }
 
-
 /// MARK: - methods
 - (void)bounceWithVelocity:(CGPoint)velocity {
     // 计算弹性动画的终止位置

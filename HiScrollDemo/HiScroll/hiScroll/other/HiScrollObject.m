@@ -34,6 +34,13 @@
     }
 }
 
+- (void)tapClicked:(UITapGestureRecognizer *)tap {
+    if ([self.delegate respondsToSelector:@selector(tapGestureRecognizerAction:)]) {
+        [self.delegate tapGestureRecognizerAction:tap];
+    }
+}
+
+
 /// MARK: - public
 - (BOOL)addGestureAtView:(UIView *)view {
     if (self.addGesture) return true;
@@ -42,6 +49,10 @@
     pan.delaysTouchesBegan = true;
     [view addGestureRecognizer:pan];
     self.addGesture = true;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClicked:)];
+    [view addGestureRecognizer:tap];
+    [tap requireGestureRecognizerToFail:pan];
     return false;
 }
 

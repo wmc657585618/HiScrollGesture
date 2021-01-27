@@ -48,6 +48,10 @@
     [self hi_handlePanRecognizer:pan];
 }
 
+- (void)tapGestureRecognizerAction:(UITapGestureRecognizer *)gestureRecognizer {
+    [self completeGestureWithVelocity:CGPointZero];
+}
+
 /// MARK: - HiScrollGestureDelegate
 - (BOOL)gesture:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
     [self hi_gestureRecognizerShouldBegin:gestureRecognizer];
