@@ -39,6 +39,9 @@ extern CGFloat hi_rubberBandDistance(CGFloat offset, CGFloat dimension);
 
 - (HiScrollNode *)generateNode;
 
+- (void)updatePanDirectionWithVelocity:(CGPoint)velocity;
+- (void)updatePanDirectionWithOffset:(CGPoint)offset;
+
 @end
 
 NS_ASSUME_NONNULL_END

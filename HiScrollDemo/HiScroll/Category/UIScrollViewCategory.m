@@ -31,19 +31,6 @@
     }
 }
 
-- (UIScrollView *)findDecelerationActionScrollView {
-    
-    UIScrollView *scrollView = self.scrollView;
-    if (!scrollView) scrollView = self; // 容器本身
-    
-    HiScrollNode *node = scrollView.scrollNode;
-    while (node && node.object != self) {
-        node = node.nextNode;
-    }
-    
-    return node.object;
-}
-
 - (void)bounceWithVelocity:(CGPoint)velocity {
     // 计算弹性动画的终止位置
     CGPoint contentOffset = CGPointInEdgeInsetsMake(self.contentOffset,self.boundsEdgeInsets);
@@ -60,19 +47,6 @@
     return hi_clampPointInEdgeInsets(offset, self.boundsEdgeInsets, self.bounds.size);
 }
 
-- (void )findScrollActionScrollView:(CGPoint)offset {
-    UIScrollView *scrollView = self.scrollView;
-    if (!scrollView) scrollView = self; // 容器本身
-    HiScrollNode *node = scrollView.scrollNode;
-    CGPoint p = CGPointPlusPointMake(scrollView.contentOffset, offset);
-
-    while (!UIEdgeInsetsContainsCGPoint(p, scrollView.boundsEdgeInsets)) {
-        node = node.nextNode;
-        scrollView = node.object;
-        p = CGPointPlusPointMake(scrollView.contentOffset, offset);
-    }
-}
-
 - (void)completeGestureWithVelocity:(CGPoint)velocity {
     
     // 抬手时 在 boundsEdgeInsets 内.
@@ -82,13 +56,12 @@
     } else {
         
         HiPoint intersection = [self findIntersectionWithVelocity:velocity];
-        if (!intersection.null) {
+        if (!intersection.null) { // 终点 在 boundsEdgeInsets 内.
             [self startDecelerationWithIntersection:intersection];
 
         } else {
             [self bounceWithVelocity:velocity];
         }
-
     }
 }
 
@@ -157,19 +130,16 @@
             // top, left < 0
             CGPoint translation = [pan translationInView:self];
             CGPoint offset = CGPointMinusPointMake(self.initialOffset, translation);// 偏移量
-            
+            [self updatePanDirectionWithOffset:offset];
             self.contentOffset = [self clampOffset:[self pointInDirection:offset]];
+
         }
             break;
         case UIGestureRecognizerStateEnded:
         {
             BOOL userHadStoppedDragging = [newPan timeIntervalSinceDate:self.lastPan] >= 0.15;
             CGPoint velocity = userHadStoppedDragging ? CGPointZero : [pan velocityInView:self];
-            if (HiScrollViewDirectionVertical == self.scrollDirection) {
-                self.panDirection = velocity.y < 0 ? HiPanTop : HiPanBottom;
-            } else {
-                self.panDirection = velocity.x < 0 ? HiPanLeft : HiPanRight;
-            }
+            [self updatePanDirectionWithVelocity:velocity];
             
             [self completeGestureWithVelocity:[self pointInDirection:CGPointMake(-velocity.x, -velocity.y)]];
             [self resetDraggin];

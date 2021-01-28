@@ -50,6 +50,22 @@
     }
 }
 
+- (void)updatePanDirectionWithVelocity:(CGPoint)velocity {
+    if (HiScrollViewDirectionVertical == self.scrollDirection) {
+        self.panDirection = velocity.y < 0 ? HiPanTop : HiPanBottom;
+    } else {
+        self.panDirection = velocity.x < 0 ? HiPanLeft : HiPanRight;
+    }
+}
+
+- (void)updatePanDirectionWithOffset:(CGPoint)offset {
+    if (HiScrollViewDirectionVertical == self.scrollDirection) {
+        self.panDirection = offset.y > self.initialOffset.y ? HiPanTop : HiPanBottom;
+    } else {
+        self.panDirection = offset.x > self.initialOffset.x ? HiPanLeft : HiPanRight;
+    }
+}
+
 - (BOOL)_isDragging {
     if (self.hi_scrollEnabled) return self.hi_draggin;
     return [self _isDragging];
