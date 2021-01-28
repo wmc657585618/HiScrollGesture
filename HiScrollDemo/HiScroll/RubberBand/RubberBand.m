@@ -34,14 +34,19 @@ UIKIT_STATIC_INLINE CGFloat rubberBandClamp(CGFloat v, CGFloat coeff, CGFloat di
     return clamped + sign * _rubberBandClamp(diff, coeff, dims);
 }
 
-inline CGPoint hi_clampPoint(CGPoint p, UIEdgeInsets e, CGSize d) {
-    
-    static CGFloat coeff = 0.55;;
+static CGFloat const coeff = 0.55;;
+
+inline CGPoint hi_clampPointInEdgeInsets(CGPoint p, UIEdgeInsets e, CGSize d) {
     Limits limitsX = {e.left, e.right};
     Limits limitsY = {e.top, e.bottom};
     CGFloat x = rubberBandClamp(p.x, coeff, d.width, limitsX);
     CGFloat y = rubberBandClamp(p.y, coeff, d.height, limitsY);
     return CGPointMake(x, y);
+}
+
+inline CGFloat hi_clampFloat(CGFloat f, CGFloat min, CGFloat max, CGFloat dism) {
+    Limits limits = {min, max};
+    return rubberBandClamp(f, coeff, dism, limits);
 }
 
 @interface RubberBand ()

@@ -18,7 +18,7 @@
 
 /// 没有触发 pan 休正 content offset
 - (void)tapGestureRecognizerAction:(UITapGestureRecognizer *)gestureRecognizer {
-    [self completeGestureWithVelocity:CGPointZero];
+    [self modifyBounce];
 }
 
 /// MARK: - HiScrollGestureDelegate

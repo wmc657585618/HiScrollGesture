@@ -90,16 +90,12 @@ UIKIT_STATIC_INLINE HiPoint _HiPointIntersection(CGPoint p1, CGPoint p2, CGPoint
 UIKIT_STATIC_INLINE HiPoint HiPointIntersection(UIEdgeInsets edgeInsets, CGPoint contentOffset, CGPoint destination) {
     HiPoint point;
     
-    // 左上
     CGPoint point1 = CGPointMake(edgeInsets.left, edgeInsets.top);
     
-    // 左下
     CGPoint point2 = CGPointMake(edgeInsets.left, edgeInsets.bottom);
     
-    // 右上
     CGPoint point3 = CGPointMake(edgeInsets.right, edgeInsets.top);
     
-    // 右下
     CGPoint point4 = CGPointMake(edgeInsets.right, edgeInsets.bottom);
     
     point = _HiPointIntersection(point1, point2, contentOffset, destination);
@@ -113,6 +109,59 @@ UIKIT_STATIC_INLINE HiPoint HiPointIntersection(UIEdgeInsets edgeInsets, CGPoint
     
     point = _HiPointIntersection(point2, point4, contentOffset, destination);
     if (!point.null) return point;
+    
+    point.null = true;
+    return point;
+}
+
+/// 与内容边界的碰撞点位置
+/// max 取 left
+UIKIT_STATIC_INLINE HiPoint HiPointIntersectionInHorizontal(UIEdgeInsets edgeInsets, CGPoint contentOffset, CGPoint destination, BOOL max) {
+    HiPoint point;
+    
+    CGPoint point1 = CGPointMake(edgeInsets.left, edgeInsets.top);
+    
+    CGPoint point2 = CGPointMake(edgeInsets.left, edgeInsets.bottom);
+    
+    CGPoint point3 = CGPointMake(edgeInsets.right, edgeInsets.top);
+    
+    CGPoint point4 = CGPointMake(edgeInsets.right, edgeInsets.bottom);
+
+    if (max) {// left
+        point = _HiPointIntersection(point1, point2, contentOffset, destination);
+        if (!point.null) return point;
+        
+    } else {// right
+        point = _HiPointIntersection(point3, point4, contentOffset, destination);
+        if (!point.null) return point;
+    }
+    
+    point.null = true;
+    return point;
+}
+
+/// 与内容边界的碰撞点位置
+/// max 取 top
+UIKIT_STATIC_INLINE HiPoint HiPointIntersectionInVertical(UIEdgeInsets edgeInsets, CGPoint contentOffset, CGPoint destination, BOOL max) {
+    HiPoint point;
+    
+    CGPoint point1 = CGPointMake(edgeInsets.left, edgeInsets.top);
+    
+    CGPoint point2 = CGPointMake(edgeInsets.left, edgeInsets.bottom);
+    
+    CGPoint point3 = CGPointMake(edgeInsets.right, edgeInsets.top);
+    
+    CGPoint point4 = CGPointMake(edgeInsets.right, edgeInsets.bottom);
+    
+    if (max) {// top
+        point = _HiPointIntersection(point2, point4, contentOffset, destination);
+        if (!point.null) return point;
+        
+    } else {// bottom
+        point = _HiPointIntersection(point1, point3, contentOffset, destination);
+        if (!point.null) return point;
+    }
+    
     
     point.null = true;
     return point;

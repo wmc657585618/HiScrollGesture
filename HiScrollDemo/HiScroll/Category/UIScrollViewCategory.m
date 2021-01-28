@@ -37,7 +37,7 @@
     if (!scrollView) scrollView = self; // 容器本身
     
     HiScrollNode *node = scrollView.scrollNode;
-    while (node.object != self) {
+    while (node && node.object != self) {
         node = node.nextNode;
     }
     
@@ -57,7 +57,7 @@
 
 // 计算偏移量
 - (CGPoint)clampOffset:(CGPoint)offset {
-    return hi_clampPoint(offset, self.boundsEdgeInsets, self.bounds.size);
+    return hi_clampPointInEdgeInsets(offset, self.boundsEdgeInsets, self.bounds.size);
 }
 
 - (void )findScrollActionScrollView:(CGPoint)offset {
@@ -75,22 +75,44 @@
 
 - (void)completeGestureWithVelocity:(CGPoint)velocity {
     
+    // 抬手时 在 boundsEdgeInsets 内.
     if (UIEdgeInsetsContainsCGPoint(self.contentOffset, self.boundsEdgeInsets)) {
         [self startDecelerationWithVelocity:velocity];
 
     } else {
-        [self bounceWithVelocity:velocity];
+        
+        HiPoint intersection = [self findIntersectionWithVelocity:velocity];
+        if (!intersection.null) {
+            [self startDecelerationWithIntersection:intersection];
+
+        } else {
+            [self bounceWithVelocity:velocity];
+        }
+
     }
 }
 
-- (void)startDecelerationWithVelocity:(CGPoint)velocity {
-    
+- (void)modifyBounce {
+    if (!UIEdgeInsetsContainsCGPoint(self.contentOffset, self.boundsEdgeInsets)) [self bounceWithVelocity:CGPointZero];
+}
+
+/// MARK:- 找到与内容边界的碰撞点位置
+- (HiPoint)findIntersectionWithVelocity:(CGPoint)velocity {
     [self.decelerationParameters updateInitialValue:self.contentOffset initialVelocity:velocity decelerationRate:UIScrollViewDecelerationRateNormal threshold:0.5];
     // 找到滚动停止时的位置
     CGPoint destination = self.decelerationParameters.destination;
-    
+        
     // 找到与内容边界的碰撞点位置
-    HiPoint intersection = HiPointIntersection(self.boundsEdgeInsets, self.contentOffset, destination);
+    switch (self.scrollDirection) {
+        case HiScrollViewDirectionVertical:
+            return HiPointIntersectionInVertical(self.boundsEdgeInsets, self.contentOffset, destination,HiPanTop == self.panDirection);
+            
+        case HiScrollViewDirectionHorizontal:
+            return HiPointIntersectionInHorizontal(self.boundsEdgeInsets, self.contentOffset, destination, HiPanLeft == self.panDirection);
+    }
+}
+
+- (void)startDecelerationWithIntersection:(HiPoint)intersection {
     self.intersectionNull = intersection.null;
 
     // 如果发现会越界，那么找到越界之前的动画时间, 默认之前的
@@ -104,6 +126,17 @@
     
     self.decelerationDuration = duration;
     [self.decelerationAnimation startAnimationsWithDuration:duration];
+}
+
+- (void)startDecelerationWithVelocity:(CGPoint)velocity {
+    // 找到与内容边界的碰撞点位置
+    HiPoint intersection = [self findIntersectionWithVelocity:velocity];
+    [self startDecelerationWithIntersection:intersection];
+}
+
+- (CGPoint)pointInDirection:(CGPoint)point {
+    if (HiScrollViewDirectionVertical == self.scrollDirection) return CGPointMake(0, point.y);
+    return  CGPointMake(point.x, 0);
 }
 
 - (void)hi_handlePanRecognizer:(UIPanGestureRecognizer *)pan {
@@ -124,7 +157,8 @@
             // top, left < 0
             CGPoint translation = [pan translationInView:self];
             CGPoint offset = CGPointMinusPointMake(self.initialOffset, translation);// 偏移量
-            self.contentOffset = [self clampOffset:offset];
+            
+            self.contentOffset = [self clampOffset:[self pointInDirection:offset]];
         }
             break;
         case UIGestureRecognizerStateEnded:
@@ -137,7 +171,7 @@
                 self.panDirection = velocity.x < 0 ? HiPanLeft : HiPanRight;
             }
             
-            [self completeGestureWithVelocity:CGPointMake(-velocity.x, -velocity.y)];
+            [self completeGestureWithVelocity:[self pointInDirection:CGPointMake(-velocity.x, -velocity.y)]];
             [self resetDraggin];
         }
             break;

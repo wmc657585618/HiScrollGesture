@@ -145,7 +145,13 @@ inline HiScrollNode * hi_nodesSort(HiScrollNode *head, BOOL revert, HiScrollView
 }
 
 - (UIEdgeInsets)boundsEdgeInsets {
-    return UIEdgeInsetsMake(self.contentInset.top, self.contentInset.left, self.contentInset.bottom + self.contentSize.height - self.bounds.size.height, self.contentInset.right + self.contentSize.width - self.bounds.size.width);
+    
+    CGFloat bottom = self.contentInset.bottom + self.contentSize.height;
+    if (bottom > self.bounds.size.height) bottom = bottom - self.bounds.size.height;
+    CGFloat right = self.contentInset.right + self.contentSize.width;
+    if (right > self.bounds.size.width) right = right - self.bounds.size.width;
+    
+    return UIEdgeInsetsMake(self.contentInset.top, self.contentInset.left, bottom, right);
 }
 
 - (void)setLastPan:(NSDate *)lastPan {

@@ -49,17 +49,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "ABBFDEC1-B6BB-473A-8F73-781BE69F4F98"
+            uuid = "51D0FEB7-961E-4475-B902-D8ECE6CBBF2F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HiScrollDemo/HiScroll/Category/UIScrollViewCategory.m"
+            filePath = "HiScrollDemo/HiScroll/Util/CGScroll.h"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "-findDecelerationActionScrollView"
-            landmarkType = "7">
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "HiPointIntersection(edgeInsets, contentOffset, destination)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

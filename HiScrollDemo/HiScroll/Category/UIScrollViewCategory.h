@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)hi_handlePanRecognizer:(UIPanGestureRecognizer *)pan;
 - (void)hi_gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer;
 
+/// 没有滑动时 休正 bounce
+- (void)modifyBounce;
+
 @end
 
 NS_ASSUME_NONNULL_END
